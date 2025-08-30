@@ -4,11 +4,9 @@ import {
   FormControlLabel,
   Checkbox,
   FormControl,
-  FormLabel,
   Radio,
   RadioGroup,
 } from "@suid/material";
-import Typography from "@suid/material/Typography";
 import SliderInput from "./SliderInput";
 
 interface SidebarProps {
@@ -49,7 +47,7 @@ export default function Sidebar(props: SidebarProps) {
                 control={
                   <Checkbox
                     checked={textChecked()}
-                    onChange={(e, value) => setTextChecked(value)}
+                    onChange={(_, value) => setTextChecked(value)}
                     color="primary"
                     class="custom-check"
                   />
@@ -69,7 +67,7 @@ export default function Sidebar(props: SidebarProps) {
                   value={textType()}
                   
                   
-                  onChange={(e, value) => setTextType(value)}
+                  onChange={(_, value) => setTextType(value)}
                 >
                   <FormControlLabel
                     value="paragraph"
