@@ -1,12 +1,28 @@
+import { createSignal } from "solid-js";
+import { generateText } from "./components/Generator";
+import type { TextOptions } from "./models/TextOptions";
+import Header from "./components/Header";
+import Sidebar from "./components/Sidebar";
+import Preview from "./components/Preview";
 
-import './App.css'
+export default function App() {
+  const [text, setText] = createSignal<string>("");
 
-function App() {
-  return(
+  const handleGenerate = (options: TextOptions) => {
+    setText(generateText(options));
+  };
+
+  return (
     <>
-      welcome
+      <div class="app">
+          <div class="header-app">
+            <Header></Header>
+          </div>
+          <div class="content-div flex-1 flex overflow-hidden">
+            <Sidebar onGenerate={handleGenerate}></Sidebar>
+            <Preview text={text()}></Preview>
+          </div>
+      </div>
     </>
-  )
+  );
 }
-
-export default App

@@ -1,0 +1,105 @@
+@use 'sass:color';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+// --- Custom SCSS variables & overrides ---
+$primary: #2563eb; // Tailwind blue-600
+$secondary: #1e293b; // Slate-800
+$light: #f8fafc; // Slate-50
+$border-color: #ededed;
+
+
+body {
+  @apply text-gray-800 font-sans;
+  background-color: rgb(255, 222, 161)
+}
+
+.app {
+  @apply flex flex-col;
+  height: 100vh;
+}
+
+.header {
+  background-color: white;
+  padding: 8px 36px;
+  border-bottom: 1px solid $border-color;
+
+  .title {
+    font-size: 24px;
+    font-weight: 700;
+  }
+}
+
+.sidebar-c {
+  border-right: 1px solid $border-color;
+
+  .filter-main-box {
+    @apply flex flex-col;
+    background: #f8eeff;
+    margin: 12px;
+    border-radius: 4px;
+
+    .top-filter {
+      padding: 12px;
+      border-bottom: 1px solid white;
+    }
+
+    .custom-check {
+      margin: 0;
+      padding: 0;
+    }
+
+    .filter-params {
+      padding: 12px 0 12px 36px;
+    }
+
+    .range-input {
+      min-width: 40px;
+      margin: 0 16px;
+      border-radius: 4px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #e9e9e9;
+    }
+  }
+}
+
+
+.slider {
+  width: 100%;
+  appearance: none;
+  background: #ffffff;
+  height: 5px;
+  color: red;
+}
+
+.btn-primary {
+  background: #a32bd3;
+  color: white;
+  padding: 8px 16px;
+  margin: 4px 12px;
+  font-weight: 600;
+  border-radius: 50px;
+  transition: all 300ms ease;
+  &:hover{
+    background: #bf54e9;
+  }
+}
+
+/* Remove arrows/spinners from number inputs */
+.no-arrows::-webkit-outer-spin-button,
+.no-arrows::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.no-arrows[type=number] {
+  -moz-appearance: textfield; /* Firefox */
+}
