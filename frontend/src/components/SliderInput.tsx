@@ -10,13 +10,15 @@ interface SliderInputProps {
 
 export default function SliderInput(props: SliderInputProps) {
   const handleInput = (e: Event) => {
-    const newVal = Number((e.currentTarget as HTMLInputElement).value);
+    let newVal = Number((e.currentTarget as HTMLInputElement).value);
+    if(newVal > 1000) newVal = 1000    
     props.onChange(newVal);
   };
 
   return (
     
-    <div class="mb-1">
+    <div class="w-full">
+      {props.value+''}
       <input
         type="range"
         min={props.min}

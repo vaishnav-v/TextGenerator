@@ -21,7 +21,7 @@ export default function Sidebar(props: SidebarProps) {
   // const [Text, setText] = createSignal(false);
   // const [range, setRange] = createSignal(300);
 
-  const [textChecked, setTextChecked] = createSignal(false);
+  const [textChecked, setTextChecked] = createSignal(true);
   const [textType, setTextType] = createSignal("paragraph");
   const [textCount, setTextCount] = createSignal(10);
 
@@ -65,8 +65,6 @@ export default function Sidebar(props: SidebarProps) {
                   class="text-radio"
                   style="flex-direction:row !important"
                   value={textType()}
-                  
-                  
                   onChange={(_, value) => setTextType(value)}
                 >
                   <FormControlLabel
@@ -90,7 +88,7 @@ export default function Sidebar(props: SidebarProps) {
                 </RadioGroup>
               </FormControl>
               <div class="slider-wrapper flex">
-                <div class="slider-c" style="width:64%">
+                <div class="slider-c flex items-center flex-1">
                   {textChecked()}
                   <SliderInput
                     min={0}
@@ -106,9 +104,13 @@ export default function Sidebar(props: SidebarProps) {
                   min={0}
                   max={1000}
                   value={textCount()}
-                  onInput={(e) =>
-                    setTextCount(parseInt(e.currentTarget.value) || 0)
-                  }
+                  onInput={(e) => {
+                    let val = e.currentTarget.valueAsNumber; // safer than parseInt
+                    if (isNaN(val)) val = 0;
+                    if (val > 1000) val = 1000;
+                    if (val < 0) val = 0;
+                    setTextCount(val);
+                  }}
                   disabled={!textChecked()}
                   class="range-input ml-2 w-16 border rounded px-2 py-1 text-center focus:outline-none focus:ring-0 no-arrows"
                 />
