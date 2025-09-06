@@ -18,7 +18,6 @@ export default function SliderInput(props: SliderInputProps) {
   return (
     
     <div class="w-full">
-      {props.value+''}
       <input
         type="range"
         min={props.min}

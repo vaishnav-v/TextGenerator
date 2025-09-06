@@ -22,6 +22,12 @@ export default function App() {
             <Sidebar onGenerate={handleGenerate}></Sidebar>
             <Preview text={text()}></Preview>
           </div>
+          <div class="footer flex p-2 justify-center">
+            <span>
+             © 2025 Lorem Text Generator. Free online tool for developers & designers.
+            </span>
+            
+          </div>
       </div>
     </>
   );

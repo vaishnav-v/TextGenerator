@@ -26,13 +26,11 @@ export default function Sidebar(props: SidebarProps) {
   const [textCount, setTextCount] = createSignal(10);
 
   function submitClicked() {
-    console.log("aa");
     const payload: TextOptions = {
       textChecked: textChecked(),
       textType: textType(),
       textCount: textCount(),
     };
-    console.log(payload);
 
     props.onGenerate(payload);
   }
@@ -89,7 +87,6 @@ export default function Sidebar(props: SidebarProps) {
               </FormControl>
               <div class="slider-wrapper flex">
                 <div class="slider-c flex items-center flex-1">
-                  {textChecked()}
                   <SliderInput
                     min={0}
                     max={1000}
