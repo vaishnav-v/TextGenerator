@@ -9,7 +9,9 @@ export default function Preview(props: PreviewProps) {
 
   const copyText = async () => {
     if (props.text) {
-      await navigator.clipboard.writeText(props.text);
+      const element = document.getElementById('gen-content') as HTMLDivElement
+      const content = element.innerHTML
+      navigator.clipboard.writeText(content);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     }
@@ -25,8 +27,7 @@ export default function Preview(props: PreviewProps) {
       </div>
 
       <div class="flex-1 bg-white p-6 rounded-sm overflow-auto">
-        <pre class="whitespace-pre-wrap text-gray-700 font-mono">
-          {props.text || "Generated text will appear here..."}
+        <pre id="gen-content" class="whitespace-pre-wrap text-gray-700 font-mono" innerHTML={props.text || "Generated text will appear here..."}>
         </pre>
       </div>
     </div>

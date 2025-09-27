@@ -1,5 +1,5 @@
 import { createSignal } from "solid-js";
-import { generateText } from "./components/Generator";
+import { Generator } from "./components/Generator"; // class import
 import type { TextOptions } from "./models/TextOptions";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
@@ -9,26 +9,24 @@ export default function App() {
   const [text, setText] = createSignal<string>("");
 
   const handleGenerate = (options: TextOptions) => {
-    setText(generateText(options));
+    const generator = new Generator(options); // create instance
+    setText(generator.generate());        // call class method
   };
 
   return (
-    <>
-      <div class="app">
-          <div class="header-app">
-            <Header></Header>
-          </div>
-          <div class="content-div flex-1 flex overflow-hidden">
-            <Sidebar onGenerate={handleGenerate}></Sidebar>
-            <Preview text={text()}></Preview>
-          </div>
-          <div class="footer flex p-2 justify-center">
-            <span>
-             © 2025 Lorem Text Generator. Free online tool for developers & designers.
-            </span>
-            
-          </div>
+    <div class="app">
+      <div class="header-app">
+        <Header />
       </div>
-    </>
+      <div class="content-div flex-1 flex overflow-hidden">
+        <Sidebar onGenerate={handleGenerate} />
+        <Preview text={text()} />
+      </div>
+      <div class="footer flex p-2 justify-center">
+        <span>
+          © 2025 Lorem Text Generator. Free online tool for developers & designers.
+        </span>
+      </div>
+    </div>
   );
 }

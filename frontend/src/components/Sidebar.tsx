@@ -8,6 +8,7 @@ import {
   RadioGroup,
 } from "@suid/material";
 import SliderInput from "./SliderInput";
+import '../sidebar.scss'
 
 interface SidebarProps {
   onGenerate: (options: TextOptions) => void;
@@ -25,11 +26,22 @@ export default function Sidebar(props: SidebarProps) {
   const [textType, setTextType] = createSignal("paragraph");
   const [textCount, setTextCount] = createSignal(10);
 
+  const [listChecked, setListChecked] = createSignal(true);
+  const [orderedListChecked, setOrderedListChecked] = createSignal(true);
+  const [unOrderedListChecked, setunOrderedListChecked] = createSignal(true);
+  const [orderedListCount, setOrderedListCount] = createSignal(10);
+  const [unOrderedListCount, setUnOrderedListCount] = createSignal(10);
+
   function submitClicked() {
     const payload: TextOptions = {
       textChecked: textChecked(),
       textType: textType(),
       textCount: textCount(),
+      listChecked:listChecked(),
+      orderedListChecked:orderedListChecked(),
+      unOrderedListChecked:unOrderedListChecked(),
+      orderedListCount:orderedListCount(),
+      unOrderedListCount:unOrderedListCount()
     };
 
     props.onGenerate(payload);
@@ -39,6 +51,7 @@ export default function Sidebar(props: SidebarProps) {
     <>
       <div class="sidebar-c w-1/3 bg-white flex flex-col">
         <div class="filters">
+          {/* text */}
           <div class="filter-main-box">
             <div class="top-filter">
               <FormControlLabel
@@ -111,6 +124,86 @@ export default function Sidebar(props: SidebarProps) {
                   disabled={!textChecked()}
                   class="range-input ml-2 w-16 border rounded px-2 py-1 text-center focus:outline-none focus:ring-0 no-arrows"
                 />
+              </div>
+            </div>
+          </div>
+          <div class="filter-main-box">
+            <div class="top-filter">
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={listChecked()}
+                    onChange={(_, value) => setListChecked(value)}
+                    color="primary"
+                    class="custom-check"
+                  />
+                }
+                style="margin:0"
+                label="List"
+              />
+            </div>
+            <div class="filter-params">
+              <div class="flex flex-col">
+                <div class="item flex justify-between">
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={orderedListChecked()}
+                        onChange={(_, value) => setOrderedListChecked(value)}
+                        color="primary"
+                        class="custom-check"
+                        disabled={!listChecked()}
+                      />
+                    }
+                    style="margin:0"
+                    label="Ordered List"
+                  />
+                  <input
+                    type="number"
+                    min={0}
+                    max={1000}
+                    value={textCount()}
+                    onInput={(e) => {
+                      let val = e.currentTarget.valueAsNumber; // safer than parseInt
+                      if (isNaN(val)) val = 0;
+                      if (val > 1000) val = 1000;
+                      if (val < 0) val = 0;
+                      setOrderedListCount(val);
+                    }}
+                    disabled={!orderedListChecked() || !listChecked()}
+                    class="range-input ml-2 w-16 border rounded px-2 py-1 text-center focus:outline-none focus:ring-0 no-arrows"
+                  />
+                </div>
+                <div class="item flex justify-between mt-2">
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={unOrderedListChecked()}
+                        onChange={(_, value) => setunOrderedListChecked(value)}
+                        color="primary"
+                        class="custom-check"
+                        disabled={!listChecked()}
+                      />
+                    }
+                    style="margin:0"
+                    label="Unordered"
+                  />
+                  <input
+                    type="number"
+                    min={0}
+                    max={1000}
+                    value={textCount()}
+                    onInput={(e) => {
+                      let val = e.currentTarget.valueAsNumber; // safer than parseInt
+                      if (isNaN(val)) val = 0;
+                      if (val > 1000) val = 1000;
+                      if (val < 0) val = 0;
+                      setUnOrderedListCount(val);
+                    }}
+                    disabled={!unOrderedListChecked() || !listChecked()}
+                    class="range-input ml-2 w-16 border rounded px-2 py-1 text-center focus:outline-none focus:ring-0 no-arrows"
+                  />
+                </div>
               </div>
             </div>
           </div>
