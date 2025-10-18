@@ -162,7 +162,7 @@ export default function Sidebar(props: SidebarProps) {
                     type="number"
                     min={0}
                     max={1000}
-                    value={textCount()}
+                    value={orderedListCount()}
                     onInput={(e) => {
                       let val = e.currentTarget.valueAsNumber; // safer than parseInt
                       if (isNaN(val)) val = 0;
@@ -192,7 +192,7 @@ export default function Sidebar(props: SidebarProps) {
                     type="number"
                     min={0}
                     max={1000}
-                    value={textCount()}
+                    value={unOrderedListCount()}
                     onInput={(e) => {
                       let val = e.currentTarget.valueAsNumber; // safer than parseInt
                       if (isNaN(val)) val = 0;
