@@ -1,3 +1,3 @@
-Lorem gext generater projetc
+Lorem Ispum Generater
 
-Creates loremText
+Creates awsome [lorem text](https://lorem-text-gen.netlify.app)
