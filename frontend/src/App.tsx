@@ -26,6 +26,8 @@ export default function App() {
         <span>
           © 2025 Lorem Text Generator. Free online tool for developers & designers.
         </span>
+        &nbsp;
+        Want to generate fonts: try our new font generator &nbsp; <a  target="_blank" class="underline" href="http://givemefonts.com" title="fancy font generator">givemefonts.com</a>
       </div>
     </div>
   );
